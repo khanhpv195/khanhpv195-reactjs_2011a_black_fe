@@ -1,26 +1,27 @@
-import React,{ useState, useEffect } from 'react';
-import * as ApiCaller from './../../helpers/index';
-import { useCookies, removeCookie } from 'react-cookie';
+import React, { useState } from 'react'
+import { Link, useHistory, useParams } from "react-router-dom";
 
 function Home(props) {
-    const [cookies] = useCookies(['']);
-    const token = cookies.access_token;
-    useEffect(() => {
-        getRoom();
-    }, []);
-    async function getRoom() {
-        await ApiCaller.getList("api/room_list_available/", token)
-            .then((res) => {
-                console.log(res.data.data);
-             
-            })
-            .catch((err) => {
-                console.log(err);
-            });
+    let history = useHistory();
+    const [fullName, setFullName] = useState('');
+    const [id, setID] = useState();
+    function goSearch() {
+        history.push('/search/' + fullName + '/' + id)
     }
+
     return (
         <div>
-            <h1>Home</h1>
+            <form>
+                <input value={fullName}
+                    onChange={(e) => setFullName(e.target.value)}
+                />
+                <input value={id}
+                    onChange={(e) => setID(e.target.value)}
+                />
+                <button onClick={goSearch} class="btn">
+                    Click go to search
+            </button>
+            </form>
         </div>
     );
 }

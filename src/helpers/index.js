@@ -2,70 +2,69 @@ import axios from 'axios';
 
 import * as Setting from '../constants/Setting';
 
-export async function getList(endpointApi,token) {
+export async function handleGet(endpointApi, token) {
     try {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        let endpoint = Setting.URL+endpointApi;
-        const response = await axios.get(endpoint,config);
-        return response;        
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.get(endpoint, config);
+        return response;
     } catch (error) {
         console.log(error);
-        
-    }
 
+    }
 }
 
-export async function handleSubmit(endpointApi,data,token) {
+export async function handleSubmit(endpointApi, data, token) {
     try {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        let endpoint = Setting.URL+endpointApi;
-        const response = await axios.post(endpoint,data,config);
-        return response;        
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.post(endpoint, data, config);
+        return response;
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-export async function handleUpdate(endpointApi,data,token) {
+export async function handleUpdate(endpointApi, data, token) {
     try {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        let endpoint = Setting.URL+endpointApi;
-        const response = await axios.put(endpoint,data,config);
-        return response;        
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.put(endpoint, data, config);
+        return response;
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-export async function handleDelete(endpointApi,token) {
+export async function handleDelete(endpointApi, token) {
     try {
         const config = {
             headers: { Authorization: `Bearer ${token}` }
         };
-        let endpoint = Setting.URL+endpointApi;
-        const response = await axios.delete(endpoint,config);
-        return response;        
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.delete(endpoint, config);
+        return response;
     } catch (error) {
         console.log(error);
-        
+
     }
 }
 
-export async function login(endpointApi,data) {
+export async function login(endpointApi, data) {
     try {
-        let endpoint = Setting.URL+endpointApi;
-        const response = await axios.post(endpoint,data);
-        return response;        
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.post(endpoint, data);
+        return response;
     } catch (error) {
         console.log(error);
-        
+
     }
 }
