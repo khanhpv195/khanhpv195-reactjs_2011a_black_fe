@@ -1,17 +1,9 @@
-import logo from './logo.svg';
-import './App.css';
-import Button from './components/atoms/Button/Button';
-function App() {
-  function onClickHandle() {
-    alert("OK")
-  }
+
+import React from "react";
+import Routing from './router'
+
+export default function App() {
   return (
-    <Button type="button"
-      onClick={onClickHandle}
-      className="A">
-      Send
-    </Button>
+   <Routing/>
   );
 }
-
-export default App;
