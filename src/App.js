@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Home from './pages/Home';
 import Login from './pages/Login';
+import Register from './pages/Register';
 import Search from './pages/Search';
 
 export default function App() {
@@ -15,6 +16,9 @@ export default function App() {
       <Switch>
         <Route path="/login">
           <Login />
+        </Route>
+        <Route path="/register">
+          <Register />
         </Route>
         <Route path="/search/:keyword/:id">
           <Search />
