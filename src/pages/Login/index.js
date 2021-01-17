@@ -7,10 +7,7 @@ import { useCookies } from "react-cookie";
 function Login(props) {
   const [email, setEmail] = useState("khanhpoly@gmail.com");
   const [password, setPassword] = useState("123456");
-
-  const [userInfo, setUserInfo] = useCookies([""]);
-  const [nameUser, setNameUser] = useCookies('');
-  const [cookies, setCookie] = useCookies([""]);
+  const [cookies, setCookie] = useCookies(['access_token', 'user_info', 'name_user']);
 
   let history = useHistory();
 
@@ -42,10 +39,11 @@ function Login(props) {
           if (res.status === 200) {
             console.log(res.data.user.name);
             setCookie("access_token", res.data.access_token, { path: "/" });
-            setUserInfo("user_info", res.data.user, { path: "/" });
-            setNameUser("name_user", res.data.user.name)
-            console.log(nameUser.name_user)
-            // history.push("/");
+            setCookie("user_info", res.data.user, { path: "/" });
+            setCookie("name_user", res.data.user.name)
+            //goi
+            console.log(cookies.name_user)
+            history.push("/");
           } else {
             alert("tài khoản hoặc mật khẩu không đúng");
           }
