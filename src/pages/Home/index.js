@@ -1,5 +1,6 @@
 import React from 'react';
-import Main from './../../components/organisms/Main'
+import Main from './../../components/organisms/Main';
+
 function Home(props) {
     return (
         <Main>

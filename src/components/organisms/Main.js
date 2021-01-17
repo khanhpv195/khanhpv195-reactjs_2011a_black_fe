@@ -2,9 +2,11 @@ import React from 'react';
 import Sidebar from './Sidebar';
 import Header from './Header';
 import Footer from './Footer';
+import Validate from './../../helpers/Validate';
 function Main(props) {
   return (
     <div>
+      <Validate />
       <div>
         <Sidebar />
         <div className="c-wrapper c-fixed-components">

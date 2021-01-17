@@ -59,5 +59,19 @@ export async function handleDelete(endpointApi, token) {
 }
 
 export async function login(endpointApi, data) {
+    try {
+        const config = {
+            headers: {
+                Accept: "application/json",
+                "Content-type": "application/json",
+                "X-Requested-With": "XMLHttpRequest",
+            },
+        };
+        let endpoint = Setting.URL + endpointApi;
+        const response = await axios.post(endpoint, data, config);
+        return response;
+    } catch (error) {
+        console.log(error);
 
+    }
 }

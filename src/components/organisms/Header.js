@@ -34,8 +34,8 @@ function Header(props) {
           <svg className="c-icon">
             <use xlinkHref="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open" />
           </svg></a></li>
-        <li className="c-header-nav-item dropdown"><a className="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-          <div className="c-avatar"><img className="c-avatar-img" src="assets/img/avatars/6.jpg" alt="user@email.com" /></div>
+        <li onClick={(e) => alert("logout")} className="c-header-nav-item dropdown"><a className="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+          <div className="c-avatar">Thoát:<img className="c-avatar-img" src="https://coreui.io/demo/free/3.4.0/assets/img/avatars/6.jpg" alt="user@email.com" /></div>
         </a>
           <div className="dropdown-menu dropdown-menu-right pt-0">
             <div className="dropdown-header bg-light py-2"><strong>Account</strong></div><a className="dropdown-item" href="#">
