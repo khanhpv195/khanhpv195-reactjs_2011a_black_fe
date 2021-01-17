@@ -3,12 +3,15 @@ import { Link, useHistory, useParams } from "react-router-dom";
 import * as ApiCaller from "./../../helpers/index";
 import axios from "axios";
 import * as Setting from "./../../constants/Setting";
-import { useCookies, removeCookie } from "react-cookie";
+import { useCookies } from "react-cookie";
 function Login(props) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("khanhpoly@gmail.com");
+  const [password, setPassword] = useState("123456");
+
   const [userInfo, setUserInfo] = useCookies([""]);
-  const [cookies, setCookie, removeCookie] = useCookies([""]);
+  const [nameUser, setNameUser] = useCookies('');
+  const [cookies, setCookie] = useCookies([""]);
+
   let history = useHistory();
 
   function goRegister() {
@@ -37,9 +40,12 @@ function Login(props) {
       })
         .then((res) => {
           if (res.status === 200) {
+            console.log(res.data.user.name);
             setCookie("access_token", res.data.access_token, { path: "/" });
             setUserInfo("user_info", res.data.user, { path: "/" });
-            history.push("/");
+            setNameUser("name_user", res.data.user.name)
+            console.log(nameUser.name_user)
+            // history.push("/");
           } else {
             alert("tài khoản hoặc mật khẩu không đúng");
           }
