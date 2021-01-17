@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 function Validate() {
   const [cookies] = useCookies(['']);
   let history = useHistory();
-  if (cookies.access_token == null) {
+  if (cookies.access_token === null || cookies.access_token == 'undefined') {
     history.push('/login');
   }
   return (

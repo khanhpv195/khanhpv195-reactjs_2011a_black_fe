@@ -1,15 +1,28 @@
 import React, { useState } from "react";
 import { useCookies, removeCookie } from "react-cookie";
-import { Link, useHistory, useParams } from "react-router-dom";
-
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
+import * as Setting from './../../constants/Setting';
+import * as ApiCaller from './../../helpers/index';
 function Header(props) {
-  const [cookies, setCookie, removeCookie] = useCookies([""]);
+  const [cookies, removeCookie] = useCookies([""]);
   let history = useHistory();
+  const token = cookies.access_token;
   function handelLogout() {
-    console.log("logout");
-    removeCookie('access_token');
-    removeCookie('user_info');
-    history.push("/login");
+    if (window.confirm("Bạn có chắc chắn muốn đăng xuất?")) {
+      try {
+        ApiCaller.handleGet("api/auth/logout", token)
+          .then((res) => {
+            removeCookie('access_token');
+            removeCookie('user_info');
+            history.push('/login')
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      } catch (err) {
+        alert(err);
+      };
+    }
   }
 
   return (
@@ -45,7 +58,7 @@ function Header(props) {
           <svg className="c-icon">
             <use xlinkHref="node_modules/@coreui/icons/sprites/free.svg#cil-envelope-open" />
           </svg></a></li>
-        <li onClick={(e) => handelLogout} className="c-header-nav-item dropdown"><a className="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+        <li onClick={handelLogout} className="c-header-nav-item dropdown"><a className="c-header-nav-link" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
           <div className="c-avatar">Thoát:<img className="c-avatar-img" src="https://coreui.io/demo/free/3.4.0/assets/img/avatars/6.jpg" alt="user@email.com" /></div>
         </a>
         </li>

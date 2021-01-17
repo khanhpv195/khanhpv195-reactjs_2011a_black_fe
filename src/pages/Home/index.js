@@ -6,7 +6,7 @@ function Home(props) {
     const [cookies, setCookie] = useCookies([""]);
     return (
         <Main>
-            <h1>Day la home {cookies.name_user}</h1>
+            <h1>Day la home {cookies.user_name}</h1>
         </Main>
     );
 }
