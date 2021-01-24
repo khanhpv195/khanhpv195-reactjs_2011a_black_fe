@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useHistory, useLocation, useParams } from "react-router-dom";
 
 function Sidebar(props) {
   return (
@@ -16,6 +17,14 @@ function Sidebar(props) {
           <svg className="c-sidebar-nav-icon">
             <use xlinkHref="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer" />
           </svg> Dashboard<span className="badge badge-info">NEW</span></a></li>
+        <li className="c-sidebar-nav-item"><Link to="booking" className="c-sidebar-nav-link">
+          <svg className="c-sidebar-nav-icon">
+            <use xlinkHref="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer" />
+          </svg>Booking</Link></li>
+        <li className="c-sidebar-nav-item"><Link to="list-booking" className="c-sidebar-nav-link" >
+          <svg className="c-sidebar-nav-icon">
+            <use xlinkHref="node_modules/@coreui/icons/sprites/free.svg#cil-speedometer" />
+          </svg>List Booking</Link></li>
       </ul>
       <button className="c-sidebar-minimizer c-class-toggler" type="button" data-target="_parent" data-class="c-sidebar-minimized" />
     </div>

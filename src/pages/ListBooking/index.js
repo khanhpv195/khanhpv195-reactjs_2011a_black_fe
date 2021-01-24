@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MaterialTable from 'material-table'
 import * as ApiCaller from '../../helpers/index';
 import { useCookies, removeCookie } from 'react-cookie';
+import Main from './../../components/organisms/Main';
 
 function ListBooking(props) {
   const [folioData, setFolioData] = useState();
@@ -27,7 +28,7 @@ function ListBooking(props) {
   }
 
   return (
-    <div>
+    <Main>
       <div style={{ maxWidth: '100%' }}>
         <MaterialTable
           options={{
@@ -56,7 +57,7 @@ function ListBooking(props) {
           title="Demo Title"
         />
       </div>
-    </div>
+    </Main>
   );
 }
 
