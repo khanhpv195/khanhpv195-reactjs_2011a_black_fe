@@ -70,7 +70,9 @@ function Login(props) {
                   {/* //start form */}
                   <form onSubmit={handleSubmit(handelLogin)}>
                     <p className="text-muted">Sign In to your account</p>
+                    {errors.email && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
                     <div className="input-group mb-3">
+
                       <div className="input-group-prepend">
                         <span className="input-group-text">
                           <svg className="c-icon">
@@ -85,8 +87,9 @@ function Login(props) {
                         name="email"
                         placeholder="Email"
                       />
-                      {errors.email && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
                     </div>
+                    {errors.password && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
+
                     <div className="input-group mb-4">
                       <div className="input-group-prepend">
                         <span className="input-group-text">
@@ -102,8 +105,8 @@ function Login(props) {
                         type="password"
                         placeholder="Password"
                       />
-                      {errors.password && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
                     </div>
+
                     <div className="row">
                       <div className="col-6">
                         <button className="btn btn-primary px-4">Login</button>
