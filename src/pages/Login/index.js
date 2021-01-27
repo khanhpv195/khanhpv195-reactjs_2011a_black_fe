@@ -4,10 +4,14 @@ import * as ApiCaller from "./../../helpers/index";
 import axios from "axios";
 import * as Setting from "./../../constants/Setting";
 import { useCookies } from "react-cookie";
+import { useForm } from "react-hook-form";
+
 function Login(props) {
+
   const [email, setEmail] = useState("khanhpoly@gmail.com");
   const [password, setPassword] = useState("123456");
   const [cookies, setCookie] = useCookies(['access_token', 'user_info', 'name_user']);
+  const { register, handleSubmit, watch, errors } = useForm();
 
   let history = useHistory();
 
@@ -15,12 +19,8 @@ function Login(props) {
     history.push("/register");
   }
 
-  async function handelLogin(e) {
-    e.preventDefault();
-    const data = {
-      email: email,
-      password: password,
-    };
+  async function handelLogin(data) {
+    console.log(data)
     const config = {
       headers: {
         Accept: "application/json",
@@ -41,7 +41,7 @@ function Login(props) {
             setCookie("access_token", res.data.access_token, { path: "/" });
             setCookie("user_info", res.data.user, { path: "/" });
             setCookie("name_user", res.data.user.name)
-            //goi
+            console.log("OK")
             console.log(cookies.name_user)
             history.push("/");
           } else {
@@ -68,7 +68,7 @@ function Login(props) {
                 <div className="card-body">
                   <h1>Login</h1>
                   {/* //start form */}
-                  <form onSubmit={handelLogin}>
+                  <form onSubmit={handleSubmit(handelLogin)}>
                     <p className="text-muted">Sign In to your account</p>
                     <div className="input-group mb-3">
                       <div className="input-group-prepend">
@@ -79,13 +79,13 @@ function Login(props) {
                         </span>
                       </div>
                       <input
-                        required
+                        ref={register({ required: true })}
                         className="form-control"
                         type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        name="email"
                         placeholder="Email"
                       />
+                      {errors.email && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
                     </div>
                     <div className="input-group mb-4">
                       <div className="input-group-prepend">
@@ -96,15 +96,13 @@ function Login(props) {
                         </span>
                       </div>
                       <input
-                        required
+                        ref={register({ required: true })}
                         className="form-control"
-                        value={password}
-                        minLength="6"
-                        maxLength="8"
+                        name="password"
                         type="password"
-                        onChange={(e) => setPassword(e.target.value)}
                         placeholder="Password"
                       />
+                      {errors.password && <span style={{ color: 'red' }}>Trường này là bắt buộc</span>}
                     </div>
                     <div className="row">
                       <div className="col-6">
